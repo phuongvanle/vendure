@@ -85,6 +85,16 @@ export const devConfig: VendureConfig = {
          ElasticsearchPlugin.init({
              host: process.env.ELASTICSEARCH_HOST || 'http://localhost',
              port: Number(process.env.ELASTICSEARCH_PORT) || 9200,
+             clientOptions: {
+                auth: {
+                    username: process.env.ELASTICSEARCH_USER || 'elastic',
+                    password: process.env.ELASTICSEARCH_PASSWORD || 'elastic'
+                },
+                tls: {
+                    rejectUnauthorized: process.env.ELASTICSEARCH_TLS_REJECT_UNAUTHORIZED === 'true', // Add this line
+                    ca: process.env.ELASTICSEARCH_TLS_CA ? fs.readFileSync(process.env.ELASTICSEARCH_TLS_CA) : undefined, // Add this line
+                }
+             },
              bufferUpdates: true,
          }),
         EmailPlugin.init({
