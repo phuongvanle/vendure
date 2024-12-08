@@ -14,6 +14,7 @@ import {
     VendureConfig,
 } from '@vendure/core';
 import { ElasticsearchPlugin } from '@vendure/elasticsearch-plugin';
+import * as fs from 'fs';
 import { defaultEmailHandlers, EmailPlugin, FileBasedTemplateLoader } from '@vendure/email-plugin';
 import { BullMQJobQueuePlugin } from '@vendure/job-queue-plugin/package/bullmq';
 import 'dotenv/config';
@@ -85,16 +86,14 @@ export const devConfig: VendureConfig = {
          ElasticsearchPlugin.init({
              host: process.env.ELASTICSEARCH_HOST || 'http://localhost',
              port: Number(process.env.ELASTICSEARCH_PORT) || 9200,
-             clientOptions: {
-                auth: {
+            auth: {
                     username: process.env.ELASTICSEARCH_USER || 'elastic',
                     password: process.env.ELASTICSEARCH_PASSWORD || 'elastic'
                 },
-                tls: {
+            ssl: {
                     rejectUnauthorized: process.env.ELASTICSEARCH_TLS_REJECT_UNAUTHORIZED === 'true', // Add this line
                     ca: process.env.ELASTICSEARCH_TLS_CA ? fs.readFileSync(process.env.ELASTICSEARCH_TLS_CA) : undefined, // Add this line
                 }
-             },
              bufferUpdates: true,
          }),
         EmailPlugin.init({
