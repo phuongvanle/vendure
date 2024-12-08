@@ -91,7 +91,7 @@ export const devConfig: VendureConfig = {
                             username: process.env.ELASTICSEARCH_USER || 'elastic',
                             password: process.env.ELASTICSEARCH_PASSWORD || 'elastic'
                         },
-                    tls: {
+                    ssl: {
                             rejectUnauthorized: process.env.ELASTICSEARCH_TLS_REJECT_UNAUTHORIZED === 'true', // Add this line
                             ca: process.env.ELASTICSEARCH_TLS_CA ? fs.readFileSync(process.env.ELASTICSEARCH_TLS_CA) : undefined, // Add this line
                         }
