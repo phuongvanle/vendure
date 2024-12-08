@@ -84,7 +84,7 @@ export const devConfig: VendureConfig = {
         // JobQueueTestPlugin.init({ queueCount: 10 }),
          ElasticsearchPlugin.init({
              host: process.env.ELASTICSEARCH_HOST || 'http://localhost',
-             port: process.env.ELASTICSEARCH_PORT || '9200',
+             port: Number(process.env.ELASTICSEARCH_PORT) || 9200,
              bufferUpdates: true,
          }),
         EmailPlugin.init({
