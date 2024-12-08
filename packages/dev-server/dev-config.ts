@@ -77,16 +77,16 @@ export const devConfig: VendureConfig = {
             route: 'assets',
             assetUploadDir: path.join(__dirname, 'assets'),
         }),
-        DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: false }),
+        //DefaultSearchPlugin.init({ bufferUpdates: false, indexStockStatus: false }),
         // Enable if you need to debug the job queue
         // BullMQJobQueuePlugin.init({}),
         DefaultJobQueuePlugin.init({}),
         // JobQueueTestPlugin.init({ queueCount: 10 }),
-        // ElasticsearchPlugin.init({
-        //     host: 'http://localhost',
-        //     port: 9200,
-        //     bufferUpdates: true,
-        // }),
+         ElasticsearchPlugin.init({
+             host: process.env.ELASTICSEARCH_HOST || 'http://localhost',
+             port: process.env.ELASTICSEARCH_PORT || '9200',
+             bufferUpdates: true,
+         }),
         EmailPlugin.init({
             devMode: true,
             route: 'mailbox',
