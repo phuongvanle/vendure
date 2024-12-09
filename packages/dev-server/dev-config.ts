@@ -114,8 +114,8 @@ export const devConfig: VendureConfig = {
             route: process.env.ADMIN_API_ROUTE || 'admin',
             port: Number(process.env.ADMIN_API_PORT) || 3001,
             adminUiConfig: {
-                apiHost: process.env.ADMIN_API_HOST || 'localhost',
-                apiPort: Number(process.env.ADMIN_API_PORT) || 443,
+                apiHost: process.env.ADMIN_PUBLIC_API_HOST || 'localhost',
+                apiPort: Number(process.env.ADMIN_PUBLIC_API_PORT) || 443,
             },
             // Un-comment to compile a custom admin ui
             // app: compileUiExtensions({
