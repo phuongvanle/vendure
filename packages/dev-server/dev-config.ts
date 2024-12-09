@@ -111,8 +111,12 @@ export const devConfig: VendureConfig = {
             },
         }),
         AdminUiPlugin.init({
-            route: 'admin',
-            port: 5001,
+            route: process.env.ADMIN_API_ROUTE || 'admin',
+            port: Number(process.env.ADMIN_API_PORT) || 3001,
+            adminUiConfig: {
+                apiHost: process.env.ADMIN_API_HOST || 'localhost',
+                apiPort: Number(process.env.ADMIN_API_PORT) || 443,
+            },
             // Un-comment to compile a custom admin ui
             // app: compileUiExtensions({
             //     outputPath: path.join(__dirname, './custom-admin-ui'),
